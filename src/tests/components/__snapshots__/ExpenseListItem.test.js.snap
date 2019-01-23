@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render expense item passed in  1`] = `
+<div>
+  <Link
+    replace={false}
+    to="/edit/undefined"
+  >
+     
+    <h3 />
+     
+  </Link>
+  <p>
+    undefined undefined
+  </p>
+</div>
+`;
