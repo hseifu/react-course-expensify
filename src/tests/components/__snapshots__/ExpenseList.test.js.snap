@@ -20,7 +20,7 @@ exports[`should render expense list with the given expenses 1`] = `
     amount={195}
     createdAt={0}
     description="one"
-    id={1}
+    id="1"
     key="1"
     note=""
   />
@@ -28,7 +28,7 @@ exports[`should render expense list with the given expenses 1`] = `
     amount={1950000}
     createdAt={-345600000}
     description="Car downpayment"
-    id={2}
+    id="2"
     key="2"
     note=""
   />
@@ -36,7 +36,7 @@ exports[`should render expense list with the given expenses 1`] = `
     amount={45000}
     createdAt={345600000}
     description="credit card"
-    id={3}
+    id="3"
     key="3"
     note=""
   />

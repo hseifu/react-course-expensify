@@ -45,9 +45,9 @@ test("should edit expense", () => {
     const someTime = moment().add(4, "month");
     const action = {
         type: "EDIT_EXPENSE",
-        id: 1,
+        id: '1',
         updates: {
-            id: 5,
+            id: '5',
             description: "new descript",
             note: "new not",
             amount: 2,
@@ -55,7 +55,7 @@ test("should edit expense", () => {
         }
     }
     const state = expensesReducer(expenses, action);
-    expect(state).toEqual([{id: 5,
+    expect(state).toEqual([{id: '5',
         description: "new descript",
         note: "new not",
         amount: 2,
@@ -79,4 +79,13 @@ test("should not edit expense if id not found", () => {
     }
     const state = expensesReducer(expenses, action);
     expect(state).toEqual(expenses);
+})
+
+test("Should set expenses", () => {
+    const action = {
+        type: "SET_EXPENSES",
+        expenses: [expenses[1]]
+    }
+    const state = expensesReducer(expenses, action);
+    expect(state).toEqual([expenses[1]]);
 })
