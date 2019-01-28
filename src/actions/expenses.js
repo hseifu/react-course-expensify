@@ -9,8 +9,9 @@ export const addExpense = (expense) => ({
 
 //start add expense dispatch
 export const startAddExpense = (expenseData = {}) => {
-    return (dispatch) => {
-        const { 
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        const {
             description = '',
             note = '', 
             amount = 0, 
@@ -19,7 +20,7 @@ export const startAddExpense = (expenseData = {}) => {
         
         const expense = { description, note, amount, createdAt }
         
-        return database.ref('expenses').push(expense)
+        return database.ref(`users/${uid}/expenses`).push(expense)
             .then((ref) => {
                 dispatch(addExpense({
                     id: ref.key,
@@ -37,8 +38,9 @@ export const removeExpense = (removeId) => ({
 })
 
 export const startRemoveExpense = (rID) => {
-    return (dispatch) => {
-        return database.ref('expenses/'+rID).remove().then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/`+rID).remove().then(() => {
             dispatch(removeExpense(rID));
         })
     }
@@ -52,8 +54,9 @@ export const editExpense = (id, updates) => ({
 })
 
 export const startEditExpense = (id, updates) => {
-    return (dispatch) => {
-        return database.ref(`expenses/${id}`).update(updates).then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
             dispatch(editExpense(id, updates));
         })
     }
@@ -66,8 +69,9 @@ export const setExpenses = (expenses) => ({
 });
 
 export const startSetExpenses = () => {
-    return (dispatch) => {
-        return database.ref('expenses')
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses`)
             .once('value')
             .then((snaphot) => {
                 const expenses = [];
